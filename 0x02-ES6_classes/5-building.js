@@ -1,12 +1,8 @@
 export default class Building {
   constructor (sqft) {
-    if (typeof sqft === 'number') {
-      this._sqft = sqft;
-      this.evacuationWarningMessage();
-    }
-    else {
-      throw new TypeError('Sqft must be a number');
-    }
+    if (typeof sqft !== 'number') throw new Error();
+    this._sqft = sqft;
+    this.evacuationWarningMessage();
   }
 
   get sqft() {
@@ -17,7 +13,9 @@ export default class Building {
     this._sqft = value;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   evacuationWarningMessage() {
-    return `Evacuate slowly the ${this._sqft} sqft building`;
+    if (this.constructor.name !== 'Building') throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
+
