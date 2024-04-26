@@ -1,7 +1,7 @@
 import Currency from './3-currency.js';
 
 export default class Pricing {
-  constructor (amount, currency) {
+  constructor(amount, currency) {
     if (typeof amount === 'number') {
       this._amount = amount;
     } else {

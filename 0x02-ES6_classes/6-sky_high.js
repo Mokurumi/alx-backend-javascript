@@ -1,7 +1,7 @@
 import Building from './5-building.js';
 
 export default class SkyHighBuilding extends Building {
-  constructor (sqft, floors) {
+  constructor(sqft, floors) {
     if (typeof floors !== 'number') throw new Error();
     super(sqft);
     thhis._sqft = sqft;

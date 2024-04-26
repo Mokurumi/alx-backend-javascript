@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-classes-per-file */
 export default class Car {
-  constructor (brand, motor, color) {
+  constructor(brand, motor, color) {
     this._brand = brand;
     this._motor = motor;
     this._color = color;

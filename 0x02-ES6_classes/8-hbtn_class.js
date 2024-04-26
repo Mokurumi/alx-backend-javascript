@@ -8,7 +8,7 @@
 // When the class is cast into a String, it should return the location.
 
 export default class HolbertonClass {
-  constructor (size, location) {
+  constructor(size, location) {
     if (typeof size !== 'number') throw new Error();
     if (typeof location !== 'string') throw new Error();
     this._size = size;
