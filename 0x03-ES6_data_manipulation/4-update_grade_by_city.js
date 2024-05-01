@@ -1,4 +1,4 @@
-import getListStudents from "./0-get_list_students";
+import getListStudents from './0-get_list_students';
 
 export default function updateStudentGradeByCity(students = getListStudents(), city, newGrades) {
   return students.filter((student) => student.location === city).map((student) => {
@@ -8,4 +8,4 @@ export default function updateStudentGradeByCity(students = getListStudents(), c
       grade: grade ? grade.grade : 'N/A',
     };
   });
-};
+}
