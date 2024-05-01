@@ -1,8 +1,7 @@
 import { RowID, RowElement } from './interface';
 
-declare function create(element: RowElement): RowID;
-declare function read(id: RowID): RowElement;
-declare function update(id: RowID, row: RowElement): RowElement;
-declare function remove(id: RowID): void;
+declare function insertRow(element: RowElement): RowID;
+declare function updateRow(id: RowID, row: RowElement): RowID;
+declare function deleteRow(id: RowID): RowID;
 
-export { create, read, update, remove };
+export { insertRow, read, updateRow, deleteRow };

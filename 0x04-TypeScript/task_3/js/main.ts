@@ -7,12 +7,12 @@ const row: RowElement = {
   lastName: 'Salva'
 };
 
-const newRowID: RowID = CRUD.create(row);
+const newRowID: RowID = CRUD.insertRow(row);
 
 const updatedRow: RowElement = {
   ...row,
   age: 23
 };
 
-CRUD.update(newRowID, updatedRow);
-CRUD.remove(newRowID);
+CRUD.updateRow(newRowID, updatedRow);
+CRUD.deleteRow(newRowID);
