@@ -19,6 +19,14 @@ const printTeacher: printTeacherFunction = (firstName: string, lastName: string)
   return `${firstName.charAt(0)}. ${lastName}`;
 };
 
+// Write a Class named StudentClass:
+
+// The constructor accepts firstName(string) and lastName(string) arguments
+// The class has a method named workOnHomework that return the string Currently working
+// The class has a method named displayName. It returns the firstName of the student
+// The constructor of the class should be described through an Interface
+// The class should be described through an Interface
+
 interface StudentConstructor {
   new(firstName: string, lastName: string): StudentClass;
 }
@@ -43,5 +51,27 @@ class StudentClass implements StudentClassInterface {
 
   displayName(): string {
     return this.firstName;
+  }
+}
+
+function isDirector(employee: Teacher): employee is Directors {
+  return (employee as Directors).numberOfReports !== undefined;
+}
+
+function executeWork(employee: Teacher) {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  } else {
+    return employee.workTeacherTasks();
+  }
+}
+
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  } else {
+    return 'Teaching History';
   }
 }
