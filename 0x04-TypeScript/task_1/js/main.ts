@@ -19,14 +19,6 @@ const printTeacher: printTeacherFunction = (firstName: string, lastName: string)
   return `${firstName.charAt(0)}. ${lastName}`;
 };
 
-// Write a Class named StudentClass:
-
-// The constructor accepts firstName(string) and lastName(string) arguments
-// The class has a method named workOnHomework that return the string Currently working
-// The class has a method named displayName. It returns the firstName of the student
-// The constructor of the class should be described through an Interface
-// The class should be described through an Interface
-
 interface StudentConstructor {
   new(firstName: string, lastName: string): StudentClass;
 }
