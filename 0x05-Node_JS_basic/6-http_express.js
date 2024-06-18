@@ -1,28 +1,14 @@
 const express = require('express');
 
 const app = express();
+const PORT = 1245;
 
-app.get('/', (req, res) => {
-  res.send('Hello Holberton School!\n');
+app.get('/', (_, res) => {
+  res.send('Hello Holberton School!');
 });
 
-app.use((req, res) => {
-  res.status(404).send(`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <title>Error</title>
-    </head>
-    <body>
-    <pre>Cannot GET ${req.originalUrl}</pre>
-    </body>
-    </html>
-  `);
-});
-
-app.listen(1245, () => {
-  console.log('Server is listening on port 1245');
+app.listen(PORT, () => {
+  console.log(`Server listening on PORT ${PORT}`);
 });
 
 module.exports = app;
