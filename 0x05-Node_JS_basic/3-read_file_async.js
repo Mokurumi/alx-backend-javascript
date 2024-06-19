@@ -6,8 +6,8 @@ const readFileAsync = promisify(fs.readFile);
 function countStudents(path) {
   return new Promise((resolve, reject) => {
     readFileAsync(path, 'utf-8')
-      .then(data => {
-        const lines = data.split('\n').filter(line => line.trim() !== ''); // Split lines and remove empty lines
+      .then((data) => {
+        const lines = data.split('\n').filter((line) => line.trim() !== ''); // Split lines and remove empty lines
 
         if (lines.length === 0) {
           reject(new Error('Cannot load the database'));
@@ -19,8 +19,8 @@ function countStudents(path) {
           SWE: [],
         };
 
-        lines.forEach(line => {
-          const [firstName, lastName, age, field] = line.split(',').map(value => value.trim());
+        lines.forEach((line) => {
+          const [firstName, lastName, age, field] = line.split(',').map((value) => value.trim());
 
           if (field === 'field' || !firstName) {
             return; // Skip the header and empty lines
@@ -43,7 +43,7 @@ function countStudents(path) {
 
         resolve();
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
