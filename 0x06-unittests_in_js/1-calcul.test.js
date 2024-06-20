@@ -12,7 +12,7 @@ describe('calculateNumber', function () {
     assert.strictEqual(calculateNumber('SUBTRACT', 1, 3), -2);
     assert.strictEqual(calculateNumber('SUBTRACT', 1, 3.7), -3);
     assert.strictEqual(calculateNumber('SUBTRACT', 1.2, 3.7), -3);
-    assert.strictEqual(calculateNumber('SUBTRACT', 1.5, 3.7), -3);
+    assert.strictEqual(calculateNumber('SUBTRACT', 1.5, 3.7), -2);
   });
   it('should round two numbers and return their quotient', () => {
     assert.strictEqual(calculateNumber('DIVIDE', 1, 3), 0.3333333333333333);
