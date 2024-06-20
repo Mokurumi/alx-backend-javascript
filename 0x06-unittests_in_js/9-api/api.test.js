@@ -13,10 +13,18 @@ describe("GET /", () => {
       .get("/")
       .expect("Welcome to the payment system", done);
   });
+});
 
-  it("should return a 404 status code", (done) => {
+describe("GET /cart/:id", () => {
+  it("should return a 200 status code when :id is a number", (done) => {
     request(app)
-      .get("/not-found")
+      .get("/cart/1")
+      .expect(200, done);
+  });
+
+  it("should return a 404 status code when :id is NOT a number", (done) => {
+    request(app)
+      .get("/cart/one")
       .expect(404, done);
   });
 });
