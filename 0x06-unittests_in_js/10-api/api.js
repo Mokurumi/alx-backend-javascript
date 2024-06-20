@@ -15,9 +15,17 @@ app.get('/cart/:id', (req, res) => {
   }
 });
 
+app.get('/available_payments', (req, res) => {
+  res.send({
+    payment_methods: {
+      credit_cards: true,
+      paypal: false
+    }
+  });
+});
+
 app.listen(7865, () => {
   console.log('API available on localhost port 7865');
 });
 
 module.exports = app;
-
