@@ -36,7 +36,7 @@ function countStudents(path) {
         });
 
         const totalStudents = Object.keys(students).reduce(
-          (sum, field) => sum + students[field].length, 0
+          (sum, field) => sum + students[field].length, 0,
         );
 
         console.log(`Number of students: ${totalStudents}`);
