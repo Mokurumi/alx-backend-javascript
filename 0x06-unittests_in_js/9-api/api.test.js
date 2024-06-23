@@ -21,7 +21,9 @@ describe("GET /cart/:id", () => {
       .get("/cart/1")
       .expect(200, done);
   });
+});
 
+describe("GET /cart/:id", () => {
   it("should return a 404 status code when :id is NOT a number", (done) => {
     request(app)
       .get("/cart/you")
