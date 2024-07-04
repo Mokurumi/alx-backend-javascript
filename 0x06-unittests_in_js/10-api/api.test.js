@@ -1,58 +1,53 @@
-import app from "./api";
-import request from "supertest";
+const request = require('request');
+const { expect } = require('chai');
 
-describe("GET /", () => {
-  it("should return a 200 status code", (done) => {
-    request(app)
-      .get("/")
-      .expect(200, done);
+describe('API integration test', () => {
+  const API_URL = 'http://localhost:7865';
+
+  it('GET / returns correct response', (done) => {
+    request.get(`${API_URL}/`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome to the payment system');
+      done();
+    });
   });
 
-  it("should return the message Welcome to the payment system", (done) => {
-    request(app)
-      .get("/")
-      .expect("Welcome to the payment system", done);
-  });
-});
-
-describe("GET /cart/:id", () => {
-  it("should return a 200 status code when :id is a number", (done) => {
-    request(app)
-      .get("/cart/1")
-      .expect(200, done);
+  it('GET /cart/:id returns correct response for valid :id', (done) => {
+    request.get(`${API_URL}/cart/47`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Payment methods for cart 47');
+      done();
+    });
   });
 
-  it("should return a 404 status code when :id is NOT a number", (done) => {
-    request(app)
-      .get("/cart/you")
-      .expect(404, done);
-  });
-});
-
-describe("GET /available_payments", () => {
-  it("should return a 200 status code", (done) => {
-    request(app)
-      .get("/available_payments")
-      .expect(200, done);
+  it('GET /cart/:id returns 404 response for negative number values in :id', (done) => {
+    request.get(`${API_URL}/cart/-47`, (_err, res, _body) => {
+      expect(res.statusCode).to.be.equal(404);
+      done();
+    });
   });
 
-  it("should return the message Welcome to the payment system", (done) => {
-    request(app)
-      .get("/available_payments")
-      .expect({ payment_methods: { credit_cards: true, paypal: false } }, done);
-  });
-});
-
-describe("POST /login", () => {
-  it("should return a 200 status code", (done) => {
-    request(app)
-      .post("/login")
-      .expect(200, done);
+  it('GET /cart/:id returns 404 response for non-numeric values in :id', (done) => {
+    request.get(`${API_URL}/cart/d200-44a5-9de6`, (_err, res, _body) => {
+      expect(res.statusCode).to.be.equal(404);
+      done();
+    });
   });
 
-  it("should return the message Welcome to the payment system", (done) => {
-    request(app)
-      .post("/login")
-      .expect("Welcome to the payment system", done);
+  it('POST /login returns valid response', (done) => {
+    request.post(`${API_URL}/login`, { json: { userName: 'Pinkbrook' } }, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome Pinkbrook');
+      done();
+    });
+  });
+
+  it('GET /available_payments returns valid response', (done) => {
+    request.get(`${API_URL}/available_payments`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(JSON.parse(body))
+        .to.be.deep.equal({ payment_methods: { credit_cards: true, paypal: false } });
+      done();
+    });
   });
 });
